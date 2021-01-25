@@ -23,6 +23,6 @@ class DatabaseManager
     public function connect()
     {
         // TODO: make the connection to the database
-        $this->database = null;
+        $this->database = mysqli_connect($this->host, $this->name, $this->password);
     }
 }

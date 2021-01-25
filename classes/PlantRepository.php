@@ -15,7 +15,27 @@ class PlantRepository
 
     public function create()
     {
+        
+        if($this->databaseManager === false){
+            die("ERROR: Could not connect. " . mysqli_connect_error());
+        }
+        
+        $name = mysqli_real_escape_string($this->databaseManager, $_POST['name']);
+        $place = mysqli_real_escape_string($this->databaseManager, $_POST['place']);
+        $water = mysqli_real_escape_string($this->databaseManager, $_POST['water']);
 
+        $sql = "INSERT INTO plant_repository (plant_name, place, water)
+        VALUES ($name, $place , $water )";
+
+        if(mysqli_query($this->databaseManager, $sql)){
+        echo "Records added successfully.";
+        } else{
+        echo "ERROR: Could not able to execute $sql. " . mysqli_error($this->databaseManager);
+        }
+ 
+        // Close connection
+        mysqli_close($this->databaseManager);
+    
     }
 
     // Get one
