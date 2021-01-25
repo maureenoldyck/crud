@@ -17,7 +17,8 @@
 
     <hr>
 
-    <div class="card-group">
+    <h2> Current collection: </h2>
+    <div class="card-group collection">
     <?php foreach ($plants as $plant) : ?>
             <div class="card" style="width: 18rem;">
                 <img class="card-img-top" src="..." alt="Card image cap">
@@ -31,6 +32,18 @@
             </div>
     <?php endforeach; ?>
     </div>
+
+
+    <h2> Add a new plant in your collection:</h2>
+    <form action="" method="post">
+    <label for="name">Plant name:</label><br>
+    <input type="text" id="name" name="name"><br>
+    <label for="place">Place details:</label><br>
+    <input type="text" id="place" name="place"><br>
+    <label for="water">Water needs details:</label><br>
+    <input type="text" id="water" name="water"><br>
+    <input type="submit" name="submit" id="submit">
+    </form>
 
 </body>
 
