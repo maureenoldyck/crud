@@ -21,9 +21,9 @@
     <div class="card-group collection">
     <?php foreach ($plants as $plant) : ?>
             <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="..." alt="Card image cap">
+                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
                 <div class="card-body">
-                    <h5 class="card-title"><?= $plant['name'] ?></h5>
+                    <h5 class="card-title"><?= $plant['plant_name'] ?></h5>
                     <p class="card-text">
                         <li><?= $plant['place'] ?></li>
                         <li><?= $plant['water'] ?></li>
