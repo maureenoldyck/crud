@@ -1,6 +1,5 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -10,15 +9,15 @@
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <title>Goodcard - track your collection of Plants</title>
 </head>
-
 <body>
 
-    <h1>Goodcard - track your collection of Plants</h1>
+<h1>Goodcard - track your collection of Plants</h1>
 
-    <hr>
+<hr>
 
-    <h2> Current collection: </h2>
-    <div class="card-group collection">
+<h2> Edit plant: </h2>
+
+<div class="card-group collection">
         <?php foreach ($plants as $plant) : ?>
             <div class="card" style="width: 18rem;">
             <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
@@ -27,17 +26,13 @@
                     <p class="card-text">
                         <li><?= $plant['place'] ?></li>
                         <li><?= $plant['water'] ?></li>
-                        <form action="?edit=<?=$plant['id']?>" method="post">
-                            <input type="submit" name="edit" value="edit">
-                        </form>
                     </p>
                 </div>
             </div>
         <?php endforeach; ?>
     </div>
 
-
-    <h2> Add a new plant in your collection:</h2>
+    <h2> New plant information:</h2>
     <form action="" method="post">
     <label for="name">Plant name:</label><br>
     <input type="text" id="name" name="name"><br>
@@ -48,6 +43,6 @@
     <input type="submit" name="submit" id="submit">
     </form>
 
-</body>
 
+</body>
 </html>

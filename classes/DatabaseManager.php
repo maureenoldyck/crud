@@ -14,7 +14,7 @@ class DatabaseManager
 
     public function __construct(string $host, string $name, string $password)
     {
-        // TODO: Set any user and password information
+        // Set any user and password information
         $this->host = $host;
         $this->name = $name;
         $this->password = $password;
@@ -22,7 +22,7 @@ class DatabaseManager
 
     public function connect()
     {
-        // TODO: make the connection to the database
+        //make the connection to the database
         $this->database =  new mysqli($this->host, $this->name, $this->password, $this->database);
 
         // Check connection

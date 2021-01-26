@@ -18,8 +18,13 @@ $databaseManager->connect();
 
 
 $plantRepository = new PlantRepository($databaseManager);
-$plants = $plantRepository->get();
 
 // Load your view
 // Tip: you can load this dynamically and based on a variable, if you want to load another view
-require 'overview.php';
+if (!empty($_POST['edit'])){
+    $plants = $plantRepository->update();
+    require 'edit.php';
+} else {
+    $plants = $plantRepository->get();
+    require 'overview.php';
+}

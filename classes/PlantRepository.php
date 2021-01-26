@@ -1,5 +1,4 @@
 <?php
-
 // This class is focussed on dealing with queries for one type of data
 // That allows for easier re-using and it's rather easy to find all your queries
 // This technique is called the repository pattern
@@ -21,9 +20,6 @@ class PlantRepository
 
         $this->databaseManager->database->query("INSERT INTO plant_repository (plant_name, place, water)
         VALUES ('$name', '$place' , '$water' )");
- 
-        // Close connection
-        // mysqli_close($this->databaseManager);
     }
 
     // Get one
@@ -35,7 +31,6 @@ class PlantRepository
     // Get all
     public function get()
     {
-
         if (!empty($_POST['submit'])) {
             $this->create();
         }
@@ -46,7 +41,8 @@ class PlantRepository
 
     public function update()
     {
-
+        $id = $_GET['edit'];
+        return $this->databaseManager->database->query("SELECT * FROM plant_repository WHERE id=$id");
     }
 
     public function delete()
