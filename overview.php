@@ -28,7 +28,7 @@
                         <li><?= $plant['place'] ?></li>
                         <li><?= $plant['water'] ?></li>
                         <form action="?edit=<?=$plant['id']?>" method="post">
-                            <input type="submit" name="edit" value="edit">
+                            <input type="submit" name="update" value="update">
                         </form>
                     </p>
                 </div>

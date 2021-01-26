@@ -21,7 +21,7 @@ $plantRepository = new PlantRepository($databaseManager);
 
 // Load your view
 // Tip: you can load this dynamically and based on a variable, if you want to load another view
-if (!empty($_POST['edit'])){
+if (!empty($_GET['edit'])){
     $plants = $plantRepository->update();
     require 'edit.php';
 } else {

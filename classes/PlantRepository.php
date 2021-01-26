@@ -45,10 +45,9 @@ class PlantRepository
 
     public function update()
     {
-
         $id = $_GET['edit'];
 
-        if (!empty($_POST['update'])) {
+        if (!empty($_POST['edit'])) {
             $this->edit();
         }
 
@@ -61,16 +60,19 @@ class PlantRepository
 
     }
 
+
     public function edit()
     {
+
         $id = $_GET['edit'];
 
-        $this->name = $_POST['edit_name'];
-        $this->place = $_POST['edit_place'];
-        $this->water = $_POST['edit_water'];
-
-        return $this->databaseManager->database->query("UPDATE plant_repository SET plant_name = $this->name, place = $this->place, water = $this->water WHERE id=$id");
-
+        $new_name = $_POST['edit_name'];
+        $new_place = $_POST['edit_place'];
+        $new_water = $_POST['edit_water'];
+            
+        header('location: index.php');
+        return $this->databaseManager->database->query("UPDATE plant_repository SET plant_name = '$new_name', place = '$new_place', water = '$new_water' WHERE id=$id");
+        
     }
 
 
