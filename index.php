@@ -24,7 +24,10 @@ $plantRepository = new PlantRepository($databaseManager);
 if (!empty($_GET['edit'])){
     $plants = $plantRepository->update();
     require 'edit.php';
-} else {
+} else if (!empty($_GET['delete'])) {
+    $plants = $plantRepository->delete();
+    require 'delete.php';
+}else {
     $plants = $plantRepository->get();
     require 'overview.php';
 }

@@ -58,6 +58,14 @@ class PlantRepository
     public function delete()
     {
 
+        $id = $_GET['delete'];
+
+        if (!empty($_POST['confirm_delete'])) {
+            $this->confirm_delete();
+        }
+
+        return $this->databaseManager->database->query("SELECT * FROM plant_repository WHERE id=$id");
+
     }
 
 
@@ -75,5 +83,14 @@ class PlantRepository
         
     }
 
+
+    public function confirm_delete()
+    {
+        $id = $_GET['delete'];
+
+        header('location: index.php');
+        return $this->databaseManager->database->query("DELETE FROM plant_repository WHERE id=$id");
+
+    }
 
 }
