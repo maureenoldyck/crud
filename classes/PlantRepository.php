@@ -5,6 +5,10 @@
 class PlantRepository
 {
     private $databaseManager;
+    public $name; 
+    public $place;
+    public $water;
+ 
 
     // This class needs a database connection to function
     public function __construct(DatabaseManager $databaseManager)
@@ -14,12 +18,12 @@ class PlantRepository
 
     public function create()
     {
-        $name = $_POST['name'];
-        $place = $_POST['place'];
-        $water = $_POST['water'];
+        $this->name = $_POST['name'];
+        $this->place = $_POST['place'];
+        $this->water = $_POST['water'];
 
         $this->databaseManager->database->query("INSERT INTO plant_repository (plant_name, place, water)
-        VALUES ('$name', '$place' , '$water' )");
+        VALUES ('$this->name', '$this->place' , '$this->water' )");
     }
 
     // Get one
@@ -41,13 +45,33 @@ class PlantRepository
 
     public function update()
     {
+
         $id = $_GET['edit'];
+
+        if (!empty($_POST['update'])) {
+            $this->edit();
+        }
+
         return $this->databaseManager->database->query("SELECT * FROM plant_repository WHERE id=$id");
+
     }
 
     public function delete()
     {
 
     }
+
+    public function edit()
+    {
+        $id = $_GET['edit'];
+
+        $this->name = $_POST['edit_name'];
+        $this->place = $_POST['edit_place'];
+        $this->water = $_POST['edit_water'];
+
+        return $this->databaseManager->database->query("UPDATE plant_repository SET plant_name = $this->name, place = $this->place, water = $this->water WHERE id=$id");
+
+    }
+
 
 }

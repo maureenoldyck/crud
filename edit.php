@@ -35,12 +35,12 @@
     <h2> New plant information:</h2>
     <form action="" method="post">
     <label for="name">Plant name:</label><br>
-    <input type="text" id="name" name="name"><br>
+    <input type="text" id="name" name="edit_name" value="<?= $plant['plant_name'] ?>"><br>
     <label for="place">Place details:</label><br>
-    <input type="text" id="place" name="place"><br>
+    <input type="text" id="place" name="edit_place" value="<?= $plant['place'] ?>"><br>
     <label for="water">Water needs details:</label><br>
-    <input type="text" id="water" name="water"><br>
-    <input type="submit" name="submit" id="submit">
+    <input type="text" id="water" name="edit_water" value="<?= $plant['water'] ?>"><br>
+    <input type="submit" name="update" id="update" value="update">
     </form>
 
 

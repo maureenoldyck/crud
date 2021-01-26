@@ -23,13 +23,16 @@ class DatabaseManager
     public function connect()
     {
         //make the connection to the database
-        $this->database =  new mysqli($this->host, $this->name, $this->password, $this->database);
+        // $this->database =  new mysqli($this->host, $this->name, $this->password, $this->database);
 
-        // Check connection
-        // if ($this->database->connect_error) {
-        // die("Connection failed: " . $this->database->connect_error);
-        // }
-        // echo "Connected successfully";
+        try {
+            $this->database = new PDO("mysql:host=$this->host;dbname=$this->database", $this->name, $this->password);
+            // set the PDO error mode to exception
+            $this->database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          } catch(PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+          }
+
     }
 }
 
