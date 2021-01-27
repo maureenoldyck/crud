@@ -21,9 +21,10 @@ class PlantRepository
         $this->name = $_POST['name'];
         $this->place = $_POST['place'];
         $this->water = $_POST['water'];
+        $this->water_date = $_POST['water_date'];
 
-        $this->databaseManager->database->query("INSERT INTO plant_repository (plant_name, place, water)
-        VALUES ('$this->name', '$this->place' , '$this->water' )");
+        $this->databaseManager->database->query("INSERT INTO plant_repository (plant_name, place, water, date_last_watered)
+        VALUES ('$this->name', '$this->place' , '$this->water', '$this->water_date' )");
     }
 
     // Get one
@@ -77,9 +78,11 @@ class PlantRepository
         $new_name = $_POST['edit_name'];
         $new_place = $_POST['edit_place'];
         $new_water = $_POST['edit_water'];
+        $new_water_date = $_POST['edit_water_date'];
+
             
         header('location: index.php');
-        return $this->databaseManager->database->query("UPDATE plant_repository SET plant_name = '$new_name', place = '$new_place', water = '$new_water' WHERE id=$id");
+        return $this->databaseManager->database->query("UPDATE plant_repository SET plant_name = '$new_name', place = '$new_place', water = '$new_water', date_last_watered = '$new_water_date' WHERE id=$id");
         
     }
 
