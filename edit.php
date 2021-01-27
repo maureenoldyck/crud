@@ -53,10 +53,10 @@
                 <input class="form-control" type="text" id="edit_water" name="edit_water" value="<?= $plant['water'] ?>"?><br>
             </div>
             <div class="form-group">
-                <label for="water_date">Date last watered:</label><br>
-                <input class="form-control" type="text" id="water_date" name="water_date" placeholder="YYYY-MM-DD"><br>
+                <label for="edit_water_date">Date last watered:</label><br>
+                <input class="form-control" type="text" id="edit_water_date" name="edit_water_date" placeholder="YYYY-MM-DD"><br>
             </div>
-            <input class="btn" style="background-color: #80CBC4;" type="submit" name="submit" id="submit">
+            <input class="btn" style="background-color: #80CBC4;" type="submit" name="edit" id="edit" value="edit">
         </form>
     </div>
 </div>
