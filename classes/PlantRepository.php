@@ -23,8 +23,12 @@ class PlantRepository
         $this->water = $_POST['water'];
         $this->water_date = $_POST['water_date'];
 
-        $this->databaseManager->database->query("INSERT INTO plant_repository (plant_name, place, water, date_last_watered)
-        VALUES ('$this->name', '$this->place' , '$this->water', '$this->water_date' )");
+        $statement =  $this->databaseManager->database->prepare("INSERT INTO plant_repository (plant_name, place, water, date_last_watered)
+        VALUES(?, ?, ?, ?)");
+        $statement->execute([$this->name, $this->place, $this->water, $this->water_date]);
+
+        // $this->databaseManager->database->query("INSERT INTO plant_repository (plant_name, place, water, date_last_watered)
+        // VALUES ('$this->name', '$this->place' , '$this->water', '$this->water_date' )");
     }
 
     // Get one
@@ -49,7 +53,7 @@ class PlantRepository
         $id = $_GET['edit'];
 
         if (!empty($_POST['edit'])) {
-            $this->edit();
+            $this->edit($id);
         }
 
         return $this->databaseManager->database->query("SELECT * FROM plant_repository WHERE id=$id");
@@ -62,7 +66,7 @@ class PlantRepository
         $id = $_GET['delete'];
 
         if (!empty($_POST['confirm_delete'])) {
-            $this->confirm_delete();
+            $this->confirm_delete($id);
         }
 
         return $this->databaseManager->database->query("SELECT * FROM plant_repository WHERE id=$id");
@@ -70,29 +74,31 @@ class PlantRepository
     }
 
 
-    public function edit()
+    public function edit($id)
     {
-
-        $id = $_GET['edit'];
 
         $new_name = $_POST['edit_name'];
         $new_place = $_POST['edit_place'];
         $new_water = $_POST['edit_water'];
         $new_water_date = $_POST['edit_water_date'];
 
-            
+        $statement =  $this->databaseManager->database->prepare("UPDATE plant_repository SET plant_name = ?, place = ?, water = ?, date_last_watered = ? WHERE id=?");
+        $statement->execute([$new_name, $new_place, $new_water, $new_water_date, $id]);
+
         header('location: index.php');
-        return $this->databaseManager->database->query("UPDATE plant_repository SET plant_name = '$new_name', place = '$new_place', water = '$new_water', date_last_watered = '$new_water_date' WHERE id=$id");
+        // return $this->databaseManager->database->query("UPDATE plant_repository SET plant_name = '$new_name', place = '$new_place', water = '$new_water', date_last_watered = '$new_water_date' WHERE id=$id");
         
     }
 
 
-    public function confirm_delete()
+    public function confirm_delete($id)
     {
-        $id = $_GET['delete'];
+
+        $statement =  $this->databaseManager->database->prepare("DELETE FROM plant_repository WHERE id=?");
+        $statement->execute([$id]);
 
         header('location: index.php');
-        return $this->databaseManager->database->query("DELETE FROM plant_repository WHERE id=$id");
+        // return $this->databaseManager->database->query("DELETE FROM plant_repository WHERE id=$id");
 
     }
 
